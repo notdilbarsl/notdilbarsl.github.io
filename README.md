@@ -1,2 +1,2 @@
 # notdilbarsl.github.io
- CS455 Game
+This is the game "Grid Runner" which I have designed. 
