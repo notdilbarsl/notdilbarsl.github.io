@@ -14,6 +14,7 @@ export function checkWin(pos){
             startButton.style.background = "linear-gradient(145deg, #ff7e5f, #feb47b)";
             startButton.style.color = "#ffffff"; 
             triggerWinningAnimation();
-            return;
+            return 1;
         }
+    return 0;
 }
