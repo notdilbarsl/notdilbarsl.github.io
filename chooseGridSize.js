@@ -1,5 +1,5 @@
 // Choose the Size of the Grid
-function chooseGridSize(){
+export function chooseGridSize(){
     const gridSize = document.getElementById('grid-size').value;
     const mineSelect = document.getElementById('mine-count');
     if (!gridSize){
