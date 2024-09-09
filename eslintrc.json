@@ -51,7 +51,8 @@
     "jasmine/no-suite-dupes": ["error", "branch"],
     "jasmine/no-spec-dupes": ["error", "branch"],
     "jasmine/no-assign-spyon": "error",
-    "jasmine/valid-expect": "error"
+    "jasmine/valid-expect": "error",
+    "constructor-super": "off"
   },
   "plugins": [
     "prettier",
