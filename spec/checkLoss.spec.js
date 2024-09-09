@@ -1,9 +1,9 @@
 require('jsdom-global')();
 
-import * as gameState from '../gameState';
-import * as showGridModule from '../showGrid';
-import * as triggerLosingAnimationModule from '../triggerLosingAnimation';
-import { checkLoss } from '../checkLoss';
+import * as gameState from '../gameState.js';
+import * as showGridModule from '../showGrid.js';
+import * as triggerLosingAnimationModule from '../triggerLosingAnimation.js';
+import { checkLoss } from '../checkLoss.js';
 
 describe('checkLoss function', () => {
   let grid, pos;

@@ -1,6 +1,6 @@
 require('jsdom-global')();
 
-import { triggerLosingAnimation } from '../triggerLosingAnimation';
+import { triggerLosingAnimation } from '../triggerLosingAnimation.js';
 
 describe('triggerLosingAnimation function', () => {
 

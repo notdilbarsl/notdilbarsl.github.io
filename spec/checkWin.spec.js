@@ -1,9 +1,9 @@
 require('jsdom-global')();
 
-import * as gameState from '../gameState';
-import * as showGridModule from '../showGrid';
-import * as triggerWinningAnimationModule from '../triggerWinningAnimation';
-import { checkWin } from '../checkWin';
+import * as gameState from '../gameState.js';
+import * as showGridModule from '../showGrid.js';
+import * as triggerWinningAnimationModule from '../triggerWinningAnimation.js';
+import { checkWin } from '../checkWin.js';
 
 describe('checkWin function', () => {
   let pos;

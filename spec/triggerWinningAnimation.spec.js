@@ -1,6 +1,6 @@
 require('jsdom-global')();
 
-import { triggerWinningAnimation } from '../triggerWinningAnimation';
+import { triggerWinningAnimation } from '../triggerWinningAnimation.js';
 
 describe('triggerWinningAnimation function', () => {
 
