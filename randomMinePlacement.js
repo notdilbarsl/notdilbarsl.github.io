@@ -40,6 +40,7 @@ export function placeMines(numMines){
         }
     }
 
+    
     for (let i = availablePositions.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [availablePositions[i], availablePositions[j]] = [availablePositions[j], availablePositions[i]];
