@@ -28,3 +28,4 @@ document.addEventListener('keydown', function(event) {
         movePlayer('right');
     }
 });
+

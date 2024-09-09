@@ -18,3 +18,4 @@ export function checkLoss(pos,grid){
     }
     return 0;
 }
+

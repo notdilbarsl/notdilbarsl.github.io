@@ -27,11 +27,11 @@ export function movePlayer(direction){
     if(checkLoss(playerPos,grid)){
         return;
     }
-    grid[playerPos.x][playerPos.y] = 'P';
-    document.getElementById(`cell-${playerPos.x}-${playerPos.y}`).innerHTML = 'P'; 
-    document.getElementById(`cell-${playerPos.x}-${playerPos.y}`).style.backgroundColor = 'green';
-    showGrid();
-    checkWin(playerPos,grid);
-    setGrid(grid);
+    if(checkWin(playerPos,grid)){
+        setPlayerPos(playerPos);
+        return;
+    }
     setPlayerPos(playerPos);
+    setGrid(grid);
+    showGrid();
 }

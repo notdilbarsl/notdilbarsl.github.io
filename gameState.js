@@ -12,6 +12,8 @@ export function setPlayerPos(newPos) {
     grid[playerPos.x][playerPos.y] = ' ';
     playerPos = newPos;
     grid[playerPos.x][playerPos.y] = 'P';
+    document.getElementById(`cell-${playerPos.x}-${playerPos.y}`).innerHTML = 'P'; 
+    document.getElementById(`cell-${playerPos.x}-${playerPos.y}`).style.backgroundColor = 'green';
 }
 
 export function getPlayerPos() {
