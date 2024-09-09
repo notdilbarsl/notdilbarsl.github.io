@@ -1,6 +1,7 @@
-// Choose the Number of Mine
-function chooseNumberOfMine(){
-    gridSize = parseInt(document.getElementById('grid-size').value, 10);
+// Choose the Number of Mines
+export function chooseNumberOfMine(){
+    const gridSize = document.getElementById('grid-size').value;
+
     const mineSelect = document.getElementById('mine-count');
     mineSelect.innerHTML = '';
     const maxMines = (gridSize - 1) ** 2;

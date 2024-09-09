@@ -1,5 +1,9 @@
+import { getGrid, isGameOver } from "./gameState.js";
+
 // Show Grid
-function showGrid(){
+export function showGrid(){
+    let grid = getGrid();
+    let gameOver = isGameOver();
     grid.forEach((row, i) => {
         row.forEach((cell, j) => {
             const cellElement = document.getElementById(`cell-${i}-${j}`);

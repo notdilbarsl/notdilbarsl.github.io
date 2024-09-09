@@ -1,13 +1,16 @@
 // Start Game
-function startGame(){
+import { createGrid } from "./createGrid.js";
+import { resetGameState } from "./gameState.js";
+import { placeMines } from "./randomMinePlacement.js";
+
+export function startGame(){
     const gridSizeSelected = document.getElementById('grid-size').value;
     const mineCountSelected = document.getElementById('mine-count').value;
     if (!gridSizeSelected || !mineCountSelected){
         alert("Please select both grid size and number of mines.");
         return;
     }
-    gameOver = false;
-    playerPos = { x: 0, y: 0 };
+    resetGameState();
     createGrid();
     const mineCount = parseInt(mineCountSelected, 10);
     placeMines(mineCount);

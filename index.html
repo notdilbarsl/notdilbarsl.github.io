@@ -8,7 +8,6 @@
 </head>
 <body>
     <div class="main-container">
-        <!-- Smaller side section for options -->
         <div class="options-section">
             <div id="instructions">
                 <h1>Grid Runner</h1>
@@ -23,7 +22,7 @@
             </div>
 
             <div id="grid-selection">
-                <select id="grid-size" onchange="chooseNumberOfMine(); generateGrid()">
+                <select id="grid-size">
                     <option disabled selected>Grid Size</option>
                     <option value="3">3x3</option>
                     <option value="4">4x4</option>
@@ -43,7 +42,7 @@
             </div>
 
             <div id="start-button">
-                <button onclick="startGame()">Start Game</button>
+                <button id="start-game-btn">Start Game</button>
             </div>
         </div>
 
@@ -53,18 +52,22 @@
             <div id="grid-container"></div>
         </div>
     </div>
-    <script src="triggerLosingAnimation.js"></script>
-    <script src="triggerWinningAnimation.js"></script>
-    <script src="chooseGridSize.js"></script>
-    <script src="chooseNumberOfMine.js"></script>
-    <script src="handleCellClick.js"></script>
-    <script src="createGrid.js"></script>
-    <script src="showGrid.js"></script>
-    <script src="movePlayer.js"></script>
-    <script src="randomMinePlacement.js"></script>
-    <script src="startGame.js"></script>
-    <script src="additionalFunctionality.js"></script>
+
+    <!-- Move all scripts here -->
+    <script type="module" src="generateGrid.js"></script>
+    <script type="module" src="gameState.js"></script>
+    <script type="module" src="triggerLosingAnimation.js"></script>
+    <script type="module" src="triggerWinningAnimation.js"></script>
+    <script type="module" src="chooseGridSize.js"></script>
+    <script type="module" src="chooseNumberOfMine.js"></script>
+    <script type="module" src="handleCellClick.js"></script>
+    <script type="module" src="createGrid.js"></script>
+    <script type="module" src="showGrid.js"></script>
+    <script type="module" src="movePlayer.js"></script>
+    <script type="module" src="randomMinePlacement.js"></script>
+    <script type="module" src="startGame.js"></script>
+    <script type="module" src="checkLoss.js"></script>
+    <script type="module" src="checkWin.js"></script>
+    <script type="module" src="additionalFunctionality.js"></script>
 </body>
 </html>
-
-

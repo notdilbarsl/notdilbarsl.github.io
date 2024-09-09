@@ -1,5 +1,14 @@
 // Move player
-function movePlayer(direction){
+import { showGrid } from "./showGrid.js"
+import { checkLoss } from "./checkLoss.js"
+import { checkWin } from "./checkWin.js"
+import { isGameOver, getGrid, setPlayerPos, getPlayerPos, setGameOver, setGrid } from "./gameState.js";
+
+export function movePlayer(direction){
+    const gridSize = document.getElementById('grid-size').value;
+    let gameOver = isGameOver();
+    let grid = getGrid();
+    let playerPos = getPlayerPos();
     if (gameOver) return;
     grid[playerPos.x][playerPos.y] = ' ';
     document.getElementById(`cell-${playerPos.x}-${playerPos.y}`).innerHTML = '';
@@ -15,36 +24,14 @@ function movePlayer(direction){
     else if (direction === 'right' && playerPos.y < gridSize - 1){
         playerPos.y += 1;
     }
-
-    if (grid[playerPos.x][playerPos.y] === 'M')
-    {
-        document.getElementById(`cell-${playerPos.x}-${playerPos.y}`).style.backgroundColor = 'red';
-        document.getElementById(`cell-${playerPos.x}-${playerPos.y}`).innerHTML = 'P';
-        gameOver = true;
-        showGrid();
-        const startButton = document.querySelector('#start-button button');
-        startButton.textContent = "Start Game";
-        startButton.style.background = "linear-gradient(145deg, #ff7e5f, #feb47b)";
-        startButton.style.color = "#ffffff"; 
-        triggerLosingAnimation();
+    if(checkLoss(playerPos,grid)){
         return;
     }
-
     grid[playerPos.x][playerPos.y] = 'P';
     document.getElementById(`cell-${playerPos.x}-${playerPos.y}`).innerHTML = 'P'; 
     document.getElementById(`cell-${playerPos.x}-${playerPos.y}`).style.backgroundColor = 'green';
     showGrid();
-
-    if (playerPos.x === gridSize - 1 && playerPos.y === gridSize - 1)
-    {
-        document.getElementById(`cell-${playerPos.x}-${playerPos.y}`).innerHTML = 'P';
-        gameOver = true;
-        showGrid();
-        const startButton = document.querySelector('#start-button button');
-        startButton.textContent = "Start Game";
-        startButton.style.background = "linear-gradient(145deg, #ff7e5f, #feb47b)";
-        startButton.style.color = "#ffffff"; 
-        triggerWinningAnimation();
-        return;
-    }
+    checkWin(playerPos,grid);
+    setGrid(grid);
+    setPlayerPos(playerPos);
 }

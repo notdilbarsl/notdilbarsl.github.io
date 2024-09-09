@@ -1,10 +1,16 @@
 // Generate Grid with Functionality
-function createGrid(){
+import { handleCellClick } from "./handleCellClick.js"
+import { setGrid, getPlayerPos } from "./gameState.js"
+
+export function createGrid(){
+    const gridSize = document.getElementById('grid-size').value;
     const gridContainer = document.getElementById('grid-container');
     gridContainer.style.gridTemplateColumns = `repeat(${gridSize}, 50px)`;
     gridContainer.innerHTML = '';
-    grid = Array.from({ length: gridSize }, () => Array(gridSize).fill(' '));
+    let grid = Array.from({ length: parseInt(gridSize) }, () => Array(parseInt(gridSize)).fill(' '));
+    let playerPos = getPlayerPos();
     grid[playerPos.x][playerPos.y] = 'P';
+    setGrid(grid);
     grid.forEach((row, i) => {
         row.forEach((cell, j) => {
             const gridItem = document.createElement('div');
@@ -18,16 +24,3 @@ function createGrid(){
     document.getElementById(`cell-${playerPos.x}-${playerPos.y}`).style.backgroundColor = 'green';
 }
 
-// Generate Grid without Functionality
-function generateGrid(){
-    const gridSize = document.getElementById('grid-size').value;
-    const gridContainer = document.getElementById('grid-container');
-    gridContainer.innerHTML = '';
-    gridContainer.style.display = 'grid';
-    gridContainer.style.gridTemplateColumns = `repeat(${gridSize}, 50px)`;
-    for(let i = 0; i < gridSize * gridSize; i++){
-        const gridItem = document.createElement('div');
-        gridItem.className = 'grid-item';
-        gridContainer.appendChild(gridItem);
-    }
-}

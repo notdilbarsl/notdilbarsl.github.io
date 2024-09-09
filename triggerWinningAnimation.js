@@ -1,5 +1,5 @@
 // Winning Animation
-function triggerWinningAnimation(){
+export function triggerWinningAnimation(){
     const gridItems = document.querySelectorAll('.grid-item');
     const messageElement = document.getElementById('message');
     messageElement.textContent = 'You Won!';

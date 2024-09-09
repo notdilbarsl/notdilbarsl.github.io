@@ -1,5 +1,5 @@
 // Losing Animation
-function triggerLosingAnimation(){
+export function triggerLosingAnimation(){
     const gridItems = document.querySelectorAll('.grid-item');
     const messageElement = document.getElementById('message');
     messageElement.textContent = 'You Lost!';
