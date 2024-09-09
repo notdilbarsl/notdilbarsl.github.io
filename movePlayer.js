@@ -2,7 +2,7 @@
 import { showGrid } from "./showGrid.js"
 import { checkLoss } from "./checkLoss.js"
 import { checkWin } from "./checkWin.js"
-import { isGameOver, getGrid, setPlayerPos, getPlayerPos, setGameOver, setGrid } from "./gameState.js";
+import { isGameOver, getGrid, setPlayerPos, getPlayerPos, setGrid } from "./gameState.js";
 
 export function movePlayer(direction){
     const gridSize = document.getElementById('grid-size').value;
