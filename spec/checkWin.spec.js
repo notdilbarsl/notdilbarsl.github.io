@@ -1,13 +1,18 @@
-require('jsdom-global')();
+/* global jest, describe, it, expect, beforeEach */
 
 import * as gameState from '../gameState.js';
 import * as showGridModule from '../showGrid.js';
 import * as triggerWinningAnimationModule from '../triggerWinningAnimation.js';
 import { checkWin } from '../checkWin.js';
 
+jest.spyOn(gameState, 'setGameOver').mockImplementation(() => {});
+jest.spyOn(showGridModule, 'showGrid').mockImplementation(() => {});
+jest.spyOn(triggerWinningAnimationModule, 'triggerWinningAnimation').mockImplementation(() => {});
+
 describe('checkWin function', () => {
   let pos;
   beforeEach(() => {
+    jest.clearAllMocks();
     pos = { x: 2, y: 2 };
     
     document.body.innerHTML = `
@@ -18,10 +23,6 @@ describe('checkWin function', () => {
       </div>
       <div id="message"></div>
     `;
-
-    spyOn(gameState, 'setGameOver').and.callThrough();
-    spyOn(showGridModule, 'showGrid').and.callThrough();
-    spyOn(triggerWinningAnimationModule, 'triggerWinningAnimation').and.callThrough();
   });
 
   it('should trigger win when player reaches the winning position', () => {

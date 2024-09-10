@@ -1,4 +1,4 @@
-require('jsdom-global')();
+/* global jest, describe, it, expect, beforeEach, afterEach */
 
 import { triggerLosingAnimation } from '../triggerLosingAnimation.js';
 
@@ -10,11 +10,12 @@ describe('triggerLosingAnimation function', () => {
       <div class="grid-item" style="background-color: blue;"></div>
       <div id="message"></div>
     `;
-    jasmine.clock().install();
+
+    jest.useFakeTimers(); // Use Jest's fake timers
   });
 
   afterEach(() => {
-    jasmine.clock().uninstall();
+    jest.clearAllTimers(); // Clear all timers after each test
   });
 
   it('should display "You Lost!" and apply losing animation', () => {
@@ -27,7 +28,7 @@ describe('triggerLosingAnimation function', () => {
     expect(gridItems[1].classList.contains('losing')).toBe(false);
     expect(document.body.classList.contains('screen-shake')).toBe(true);
 
-    jasmine.clock().tick(2000);
+    jest.advanceTimersByTime(2000);
 
     expect(messageElement.textContent).toBe('');
     expect(messageElement.classList.contains('losing')).toBe(false);

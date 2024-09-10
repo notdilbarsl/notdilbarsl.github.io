@@ -3,11 +3,11 @@
     "browser": true,
     "es6": true,
     "node": true,
-    "jasmine": true
+    "jest": true,
+    "jest/globals": true
   },
   "extends": [
     "eslint:recommended",
-    "plugin:jasmine/recommended",
     "plugin:prettier/recommended"
   ],
   "parserOptions": {
@@ -16,6 +16,14 @@
     "ecmaFeatures": {
       "jsx": true
     }
+  },
+  "globals": {
+    "describe": "readonly",
+    "it": "readonly",
+    "expect": "readonly",
+    "jest": "readonly",
+    "beforeEach": "readonly",
+    "afterEach": "readonly"
   },
   "rules": {
     "complexity": ["error", 10],
@@ -45,28 +53,9 @@
     "arrow-parens": ["error", "always"],
     "no-duplicate-imports": "error",
     "no-new-symbol": "error",
-    "object-shorthand": ["error", "always"],
-    "jasmine/no-focused-tests": "error",
-    "jasmine/no-disabled-tests": "warn",
-    "jasmine/no-suite-dupes": ["error", "branch"],
-    "jasmine/no-spec-dupes": ["error", "branch"],
-    "jasmine/no-assign-spyon": "error",
-    "jasmine/valid-expect": "error",
-    "constructor-super": "off"
+    "object-shorthand": ["error", "always"]
   },
   "plugins": [
-    "prettier",
-    "jasmine"
-  ],
-  "overrides": [
-    {
-      "files": ["*.spec.js", "*.test.js"],
-      "rules": {
-        "no-unused-expressions": "off",
-        "no-undef": "off",
-        "jasmine/no-expect-in-setup-teardown": "error",
-        "jasmine/no-global-setup": "warn"
-      }
-    }
+    "prettier"
   ]
 }

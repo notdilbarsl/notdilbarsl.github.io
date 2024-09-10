@@ -1,13 +1,19 @@
-require('jsdom-global')();
+/* global jest, describe, it, expect, beforeEach */
 
 import * as gameState from '../gameState.js';
 import * as showGridModule from '../showGrid.js';
 import * as triggerLosingAnimationModule from '../triggerLosingAnimation.js';
 import { checkLoss } from '../checkLoss.js';
 
+jest.spyOn(gameState, 'setGameOver').mockImplementation(() => {});
+jest.spyOn(showGridModule, 'showGrid').mockImplementation(() => {});
+jest.spyOn(triggerLosingAnimationModule, 'triggerLosingAnimation').mockImplementation(() => {});
+
 describe('checkLoss function', () => {
   let grid, pos;
+
   beforeEach(() => {
+    jest.clearAllMocks();
     grid = [
       ['', '', ''],
       ['', 'M', ''],
@@ -15,7 +21,6 @@ describe('checkLoss function', () => {
     ];
 
     pos = { x: 1, y: 1 };
-    
     document.body.innerHTML = `
       <div id="cell-1-1" class="grid-item"></div>
       <div id="start-button">
@@ -23,9 +28,6 @@ describe('checkLoss function', () => {
       </div>
       <div id="message"></div>
     `;
-    spyOn(gameState, 'setGameOver').and.callThrough();
-    spyOn(showGridModule, 'showGrid').and.callThrough();
-    spyOn(triggerLosingAnimationModule, 'triggerLosingAnimation').and.callThrough();
   });
 
   it('should trigger loss when player steps on a mine', () => {
@@ -44,5 +46,4 @@ describe('checkLoss function', () => {
     expect(showGridModule.showGrid).not.toHaveBeenCalled();
     expect(triggerLosingAnimationModule.triggerLosingAnimation).not.toHaveBeenCalled();
   });
-
 });

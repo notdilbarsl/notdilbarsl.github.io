@@ -1,4 +1,4 @@
-require('jsdom-global')();
+/* global jest, describe, it, expect, beforeEach, afterEach */
 
 import { triggerWinningAnimation } from '../triggerWinningAnimation.js';
 
@@ -11,11 +11,11 @@ describe('triggerWinningAnimation function', () => {
       <div id="message"></div>
     `;
 
-    jasmine.clock().install();
+    jest.useFakeTimers(); 
   });
 
   afterEach(() => {
-    jasmine.clock().uninstall();
+    jest.clearAllTimers();
   });
 
   it('should display "You Won!" and apply winning animation', () => {
@@ -27,7 +27,7 @@ describe('triggerWinningAnimation function', () => {
     const greenItem = gridItems[0];
     expect(greenItem.classList.contains('winning')).toBe(true);
 
-    jasmine.clock().tick(2000);
+    jest.advanceTimersByTime(2000);
 
     expect(messageElement.textContent).toBe('');
     expect(messageElement.classList.contains('winning')).toBe(false);
