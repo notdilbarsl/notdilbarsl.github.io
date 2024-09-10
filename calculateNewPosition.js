@@ -12,5 +12,4 @@ export function calculateNewPosition(direction,gridSize,pos){
     pos.y += 1;
   }
   return pos;
-  
 }
