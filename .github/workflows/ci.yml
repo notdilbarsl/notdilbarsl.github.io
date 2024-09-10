@@ -24,9 +24,10 @@ jobs:
         run: npm install
 
       - name: Run ESLint
-        run: npm run lint -- --max-warnings=0  
+        run: npm run lint -- --max-warnings=0 
 
   test:
+    needs: lint
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository content
@@ -41,8 +42,7 @@ jobs:
         run: npm install
 
       - name: Run Jest tests and generate coverage
-        run: npm test -- --coverage
-
+        run: npm test
 
       - name: Generate and save coverage report
         run: npm run coverage
@@ -52,3 +52,13 @@ jobs:
         with:
           name: coverage-report
           path: coverage/coverage.lcov
+
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository content
+        uses: actions/checkout@v2
+
+      - name: Deploy to GitHub Pages
+        run: npm run deploy
