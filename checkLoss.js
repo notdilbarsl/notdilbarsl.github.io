@@ -2,6 +2,7 @@ import { triggerLosingAnimation } from './triggerLosingAnimation.js';
 import { showGrid } from './showGrid.js';
 import { setGameOver } from './gameState.js';
 
+
 export function checkLoss(pos,grid){
   if (grid[pos.x][pos.y] === 'M')
   {
