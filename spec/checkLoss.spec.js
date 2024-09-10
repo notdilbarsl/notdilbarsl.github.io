@@ -19,7 +19,6 @@ describe('checkLoss function', () => {
       ['', 'M', ''],
       ['', '', '']
     ];
-
     pos = { x: 1, y: 1 };
     document.body.innerHTML = `
       <div id="cell-1-1" class="grid-item"></div>
