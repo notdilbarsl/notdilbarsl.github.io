@@ -44,26 +44,26 @@ jobs:
       - name: Run Jest tests and generate coverage
         run: npm test
 
-      - name: Generate and save coverage report
-        run: npm run coverage
-
-      - name: Upload coverage results
-        uses: actions/upload-artifact@v2
-        with:
-          name: coverage-report
-          path: coverage/coverage.lcov
-
   deploy:
-    needs: test 
+    needs: test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository content
         uses: actions/checkout@v2
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Upload files to be deployed to GitHub Pages
+        uses: actions/upload-pages-artifact@v1
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: gh-pages
-          publish_dir: ./
+          path: ./
 
+  deploy-pages:
+    needs: deploy
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write  
+      id-token: write
+    environment:
+      name: github-pages
+    steps:
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v1
