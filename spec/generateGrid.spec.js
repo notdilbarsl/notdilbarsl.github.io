@@ -1,3 +1,5 @@
+/* global describe, it, expect, beforeEach */
+
 import { generateGrid } from '../generateGrid.js';
 
 describe('generateGrid', () => {
@@ -40,7 +42,7 @@ describe('generateGrid', () => {
     for (let i = 0; i < gridItems.length; i++) {
       const columnIndex = i % gridSize;
       if (columnIndex === 0) {
-        rowIndex++;
+        rowIndex = rowIndex + 1;
       }
     }
   });

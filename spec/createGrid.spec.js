@@ -1,3 +1,5 @@
+/* global jest, describe, it, expect, beforeEach */
+
 import { createGrid } from '../createGrid.js';
 import { setGrid, getPlayerPos } from '../gameState.js';
 import { handleCellClick } from '../handleCellClick.js';
@@ -43,7 +45,6 @@ describe('createGrid', () => {
 
   it('should set up the grid with empty cells except for the player', () => {
     createGrid();
-    const gridContainer = document.getElementById('grid-container');
     for (let i = 0; i < 3; i++) {
       for (let j = 0; j < 3; j++) {
         if (i === 0 && j === 0) continue;

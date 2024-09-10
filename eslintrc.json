@@ -53,7 +53,8 @@
     "arrow-parens": ["error", "always"],
     "no-duplicate-imports": "error",
     "no-new-symbol": "error",
-    "object-shorthand": ["error", "always"]
+    "object-shorthand": ["error", "always"],
+    "constructor-super": "off"
   },
   "plugins": [
     "prettier"

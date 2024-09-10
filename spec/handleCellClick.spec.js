@@ -1,3 +1,5 @@
+/* global jest, describe, it, expect, beforeEach */
+
 import { handleCellClick } from '../handleCellClick.js';
 import { isGameOver, getPlayerPos } from '../gameState.js';
 import { movePlayer } from '../movePlayer.js';

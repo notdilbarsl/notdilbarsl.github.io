@@ -40,7 +40,8 @@
       "lcov"
     ],
     "collectCoverageFrom": [
-      "src/**/*.js",
+      "*.js",               
+      "!spec/**",
       "!**/node_modules/**"
     ]
   }

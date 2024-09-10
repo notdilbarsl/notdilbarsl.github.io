@@ -1,3 +1,5 @@
+/* global jest, describe, it, expect, beforeEach */
+
 import { showGrid } from '../showGrid.js';
 import { getGrid, isGameOver } from '../gameState.js';
 

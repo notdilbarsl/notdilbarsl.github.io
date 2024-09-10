@@ -1,3 +1,5 @@
+/* global jest, describe, it, expect, beforeEach */
+
 import { startGame } from '../startGame.js';
 import { resetGameState } from '../gameState.js';
 import { createGrid } from '../createGrid.js';
