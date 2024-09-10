@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grid Runner</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="main-container">
+        <div class="options-section">
+            <div id="instructions">
+                <h1>Grid Runner</h1>
+                <h2>Instructions</h2>
+                <ul>
+                    <li>Select the Size of the Grid and the Number of Mines.</li>
+                    <li>Click "Start Game" to begin and navigate the grid.</li>
+                    <li>If you step on a mine, you lose, so avoid the mines.</li>
+                    <li>Start from the top-left corner.</li>
+                    <li>Reach the bottom-right corner to win!</li>
+                </ul>
+            </div>
+
+            <div id="grid-selection">
+                <select id="grid-size">
+                    <option disabled selected>Grid Size</option>
+                    <option value="3">3x3</option>
+                    <option value="4">4x4</option>
+                    <option value="5">5x5</option>
+                    <option value="6">6x6</option>
+                    <option value="7">7x7</option>
+                    <option value="8">8x8</option>
+                    <option value="9">9x9</option>
+                    <option value="10">10x10</option>
+                </select>
+            </div>
+
+            <div id="mine-selection">
+                <select id="mine-count">
+                    <option disabled selected>Number of Mines</option>
+                </select>
+            </div>
+
+            <div id="start-button">
+                <button id="start-game-btn">Start Game</button>
+            </div>
+        </div>
+
+        <!-- Larger section for the game -->
+        <div class="game-section">
+            <div id="message" class="message"></div>
+            <div id="grid-container"></div>
+        </div>
+    </div>
+
+    <!-- Move all scripts here -->
+    <script type="module" src="generateGrid.js"></script>
+    <script type="module" src="generateDirection.js"></script>
+    <script type="module" src="gameState.js"></script>
+    <script type="module" src="triggerLosingAnimation.js"></script>
+    <script type="module" src="triggerWinningAnimation.js"></script>
+    <script type="module" src="chooseGridSize.js"></script>
+    <script type="module" src="chooseNumberOfMine.js"></script>
+    <script type="module" src="handleCellClick.js"></script>
+    <script type="module" src="createGrid.js"></script>
+    <script type="module" src="showGrid.js"></script>
+    <script type="module" src="movePlayer.js"></script>
+    <script type="module" src="randomMinePlacement.js"></script>
+    <script type="module" src="generateRandomPath.js"></script>
+    <script type="module" src="startGame.js"></script>
+    <script type="module" src="checkLoss.js"></script>
+    <script type="module" src="checkWin.js"></script>
+    <script type="module" src="additionalFunctionality.js"></script>
+</body>
+</html>
