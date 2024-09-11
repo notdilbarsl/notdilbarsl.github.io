@@ -32,8 +32,8 @@ Website Link : https://notdilbarsl.github.io/
 3. **Unit Testing**:
    - I initially wrote tests using Jasmine and nyc (Istanbul) for coverage reports but faced compatibility issues with ES6 dependencies. Consequently, I switched to Jest for testing.
    - Achieved the following coverage metrics with Jest:
-     - **Statements**: 97.55%
-     - **Branches**: 92.77%
+     - **Statements**: 97.14%
+     - **Branches**: 91.56%
      - **Lines**: 97.37%
      - **Functions**: 94.87%
    - These metrics significantly exceeded the required 50% coverage.
