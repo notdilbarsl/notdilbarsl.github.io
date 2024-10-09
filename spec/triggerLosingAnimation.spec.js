@@ -6,16 +6,17 @@ describe('triggerLosingAnimation function', () => {
 
   beforeEach(() => {
     document.body.innerHTML = `
+      <div id="tries">0</div>
       <div class="grid-item" style="background-color: red;"></div>
       <div class="grid-item" style="background-color: blue;"></div>
       <div id="message"></div>
     `;
 
-    jest.useFakeTimers(); // Use Jest's fake timers
+    jest.useFakeTimers();
   });
 
   afterEach(() => {
-    jest.clearAllTimers(); // Clear all timers after each test
+    jest.clearAllTimers();
   });
 
   it('should display "You Lost!" and apply losing animation', () => {
@@ -33,5 +34,14 @@ describe('triggerLosingAnimation function', () => {
     expect(messageElement.textContent).toBe('');
     expect(messageElement.classList.contains('losing')).toBe(false);
     expect(document.body.classList.contains('screen-shake')).toBe(false);
+  });
+  it('should increase the tries element by 1', () => {
+    // Initial value of tries is 0
+    const triesElement = document.getElementById('tries');
+    expect(triesElement.textContent).toBe('0');
+    triggerLosingAnimation();
+    expect(triesElement.textContent).toBe('1');
+    triggerLosingAnimation();
+    expect(triesElement.textContent).toBe('2');
   });
 });

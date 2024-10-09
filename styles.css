@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #1a1a1a; /* Very dark gray background */
+    background-color: #1a1a1a;
     color: #f4f4f4;
     margin: 0;
     padding: 0;
@@ -47,7 +47,7 @@ body {
 
 .message.losing {
     animation: textGlowRed 1.5s infinite alternate;
-    color: #ff1744; /* Set the text color to match the glow */
+    color: #ff1744;
 }
 
 @keyframes gridFlashGreen {
@@ -63,7 +63,6 @@ body {
 .screen-shake {
     animation: shake 0.5s;
 }
-
 
 @keyframes textGlow {
     0% { text-shadow: 0 0 5px #00c853, 0 0 10px #00c853, 0 0 15px #00c853; }

@@ -1,7 +1,8 @@
 /* global jest, describe, it, expect, beforeEach, afterEach */
 
 import { triggerWinningAnimation } from '../triggerWinningAnimation.js';
-
+import { postScore } from '../postScore.js';
+jest.mock('../postScore.js');
 describe('triggerWinningAnimation function', () => {
 
   beforeEach(() => {
@@ -16,6 +17,11 @@ describe('triggerWinningAnimation function', () => {
 
   afterEach(() => {
     jest.clearAllTimers();
+  });
+
+  it('should call updateLeaderboard with correct gridSize and mineCount', () => {
+    triggerWinningAnimation();
+    expect(postScore).toHaveBeenCalled();
   });
 
   it('should display "You Won!" and apply winning animation', () => {

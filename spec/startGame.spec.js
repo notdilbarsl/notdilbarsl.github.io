@@ -4,10 +4,18 @@ import { startGame } from '../startGame.js';
 import { resetGameState } from '../gameState.js';
 import { createGrid } from '../createGrid.js';
 import { placeMines } from '../randomMinePlacement.js';
+import { updateLeaderboard } from '../updateLeaderboard.js';
 
 jest.mock('../gameState.js');
 jest.mock('../createGrid.js');
 jest.mock('../randomMinePlacement.js');
+jest.mock('../updateLeaderboard.js');
+
+global.fetch = jest.fn(() =>
+  Promise.resolve({
+    json: () => Promise.resolve([]),
+  })
+);
 
 describe('startGame', () => {
   beforeEach(() => {
@@ -17,8 +25,15 @@ describe('startGame', () => {
       <div id="grid-container" style="display:none;"></div>
       <div id="message" style="display:none;"></div>
       <div id="start-button"><button>Start Game</button></div>
+      <div class="tries-container" style="display:none;"></div>
+      <table id="leaderboardTable"><tbody></tbody></table>
     `;
     jest.clearAllMocks();
+  });
+
+  it('should call updateLeaderboard with correct gridSize and mineCount', () => {
+    startGame();
+    expect(updateLeaderboard).toHaveBeenCalledWith(3, 2);
   });
 
   it('should show an alert if grid size or mine count is not selected', () => {

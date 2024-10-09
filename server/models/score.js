@@ -1,6 +1,4 @@
 const mongoose = require('mongoose');
-
-// Define the schema for scores
 const scoreSchema = new mongoose.Schema({
   playerName: {
     type: String,
@@ -23,8 +21,6 @@ const scoreSchema = new mongoose.Schema({
     default: Date.now
   }
 });
-
-// Create the model using the schema
 const Score = mongoose.model('Score', scoreSchema);
 
 module.exports = Score;
