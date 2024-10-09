@@ -1,5 +1,7 @@
 // Losing Animation
 export function triggerLosingAnimation(){
+  let roundNumber = parseInt(document.getElementById('tries').textContent,10);
+  document.getElementById('tries').textContent = roundNumber + 1;
   const gridItems = document.querySelectorAll('.grid-item');
   const messageElement = document.getElementById('message');
   messageElement.textContent = 'You Lost!';

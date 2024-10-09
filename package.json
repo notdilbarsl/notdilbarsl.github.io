@@ -11,7 +11,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
+  "description": "Website Link : https://notdilbarsl.github.io/",
   "devDependencies": {
     "@babel/preset-env": "^7.25.4",
     "@babel/register": "^7.24.6",
@@ -28,8 +28,12 @@
     "prettier": "^3.3.3"
   },
   "dependencies": {
+    "body-parser": "^1.20.3",
+    "cors": "^2.8.5",
     "eslint-plugin-jest": "^28.8.3",
     "esm": "^3.2.25",
+    "express": "^4.21.0",
+    "mongoose": "^8.7.0",
     "rewire": "^7.0.0"
   },
   "jest": {
@@ -43,7 +47,7 @@
     "coverageThreshold": {
       "global": {
         "branches": 50,
-        "functions":50,
+        "functions": 50,
         "lines": 50,
         "statements": 50
       }

@@ -9,16 +9,23 @@
 <body>
     <div class="main-container">
         <div class="options-section">
-            <div id="instructions">
-                <h1>Grid Runner</h1>
-                <h2>Instructions</h2>
-                <ul>
-                    <li>Select the Size of the Grid and the Number of Mines.</li>
-                    <li>Click "Start Game" to begin and navigate the grid.</li>
-                    <li>If you step on a mine, you lose, so avoid the mines.</li>
-                    <li>Start from the top-left corner.</li>
-                    <li>Reach the bottom-right corner to win!</li>
-                </ul>
+            <h1>Grid Runner</h1>
+            <div class="instructions-container">
+                <button class="instructions-button">Instructions</button>
+                <div class="instructions-popup">
+                    <p>
+                        1. Enter your User ID.<br>
+                        2. Select the Size of the Grid and the Number of Mines.<br>
+                        3. Click "Start Game" to begin and navigate the grid.<br>
+                        4. If you step on a mine, you lose, so avoid the mines.<br>
+                        5. Start from the top-left corner.<br>
+                        6. Reach the bottom-right corner to win!
+                    </p>
+                </div>
+            </div>
+
+            <div id="user-id">
+                <input type="text" id="userID" name="userID" placeholder="Enter your User ID" required>
             </div>
 
             <div id="grid-selection">
@@ -44,12 +51,34 @@
             <div id="start-button">
                 <button id="start-game-btn">Start Game</button>
             </div>
+
+            <div id="leaderboard">
+                <h2>Leaderboard</h2>
+                <table id="leaderboardTable">
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>User ID</th>
+                            <th>Tries</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Rows will be dynamically added here -->
+                    </tbody>
+                </table>
+            </div>
         </div>
 
         <!-- Larger section for the game -->
         <div class="game-section">
             <div id="message" class="message"></div>
             <div id="grid-container"></div>
+            <div class="tries-container">
+                <span class="round-label">Rounds Before Last Win:</span>
+                <div id="tries-box">
+                    <span id="tries">0</span>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -71,5 +100,6 @@
     <script type="module" src="checkLoss.js"></script>
     <script type="module" src="checkWin.js"></script>
     <script type="module" src="additionalFunctionality.js"></script>
+    <script type="module" src="updateLeaderboard.js"></script>
 </body>
 </html>

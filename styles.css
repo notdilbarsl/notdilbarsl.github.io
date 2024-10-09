@@ -85,11 +85,24 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     position: relative;
     z-index: 1;
 }
 
+#user-id {
+    margin: 10px 0;
+}
+
+#userID {
+    width: 225px;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    border: 1px solid #555;
+    background-color: #333;
+    color: #f4f4f4;
+}
 
 #instructions {
     text-align: center;
@@ -261,4 +274,85 @@ button {
 
 button:hover {
     background-color: #888888; /* Light gray on hover */
+}
+
+table {
+    margin: 20px auto;
+    border-collapse: collapse;
+    width: 60%;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+th {
+    background-color: #FF8C42;
+    color: white;
+}
+
+td {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+tbody tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.instructions-container {
+    position: relative;
+    display: inline-block;
+}
+
+.instructions-popup {
+    display: none;
+    position: fixed;
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: left;
+    width: 300px;
+    z-index: 1000;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+.instructions-button:hover + .instructions-popup {
+    display: block;
+}
+
+h2 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.tries-container {
+    display: none; /* Initially hidden */
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    width: 100%; /* Full width to center */
+}
+
+.round-label {
+    font-size: 18px;
+    margin-right: 10px;
+    color: white;
+}
+
+#tries-box {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ff8c42; /* Orange background */
+    border-radius: 5px;
+    font-size: 18px;
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 60px;
+    text-align: center;
 }

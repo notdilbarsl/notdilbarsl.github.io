@@ -2,15 +2,20 @@
 import { createGrid } from './createGrid.js';
 import { resetGameState } from './gameState.js';
 import { placeMines } from './randomMinePlacement.js';
+import { updateLeaderboard } from './updateLeaderboard.js';
 
 export function startGame(){
   const gridSizeSelected = document.getElementById('grid-size').value;
   const mineCountSelected = document.getElementById('mine-count').value;
+  const grid = parseInt(gridSizeSelected, 10);
+  const mine = parseInt(mineCountSelected, 10);
+  updateLeaderboard(grid, mine);
   if (!gridSizeSelected || !mineCountSelected){
     // eslint-disable-next-line no-alert
     alert('Please select both grid size and number of mines.');
     return;
   }
+  document.querySelector('.tries-container').style.display = 'flex';
   resetGameState();
   createGrid();
   const mineCount = parseInt(mineCountSelected, 10);
