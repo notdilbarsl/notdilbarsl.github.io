@@ -23,7 +23,8 @@
     "expect": "readonly",
     "jest": "readonly",
     "beforeEach": "readonly",
-    "afterEach": "readonly"
+    "afterEach": "readonly",
+    "fetch": "readonly"
   },
   "rules": {
     "complexity": ["error", { "max": 5 }],

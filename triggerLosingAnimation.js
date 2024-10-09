@@ -1,6 +1,6 @@
 // Losing Animation
 export function triggerLosingAnimation(){
-  let roundNumber = parseInt(document.getElementById('tries').textContent,10);
+  const roundNumber = parseInt(document.getElementById('tries').textContent,10);
   document.getElementById('tries').textContent = roundNumber + 1;
   const gridItems = document.querySelectorAll('.grid-item');
   const messageElement = document.getElementById('message');
@@ -11,10 +11,10 @@ export function triggerLosingAnimation(){
       item.classList.add('losing');
     }
   });
-  document.body.classList.add('screen-shake'); // Shake the Screen on Losing
+  document.body.classList.add('screen-shake');
   setTimeout(() => {
     messageElement.textContent = '';
     messageElement.classList.remove('losing');
   }, 2000);
-  setTimeout(() => document.body.classList.remove('screen-shake'), 2000); // Stops the shaking and the "You Lost" message after 2 seconds
+  setTimeout(() => document.body.classList.remove('screen-shake'), 2000);
 }
