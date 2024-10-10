@@ -10,11 +10,11 @@ describe('Server to Database Integration', () => {
   beforeAll(async () => {
     const mongoURI = 'mongodb+srv://notdilbarsl:Rise1.618@gridrunner.onl43.mongodb.net/gridrunner_test?retryWrites=true&w=majority&appName=GridRunner';
     await mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true });
-  }, 10000);
+  }, 100000);
 
   afterAll(async () => {
     await mongoose.connection.close();
-  }, 10000);
+  }, 100000);
 
   it('should save a new score to the database and return the saved score', async () => {
     const scoreData = {
@@ -39,5 +39,5 @@ describe('Server to Database Integration', () => {
     expect(savedScore.gridSize).toBe('6x6');
     expect(savedScore.mineCount).toBe(10);
     expect(savedScore.tries).toBe(1000);
-  }, 10000);
+  }, 100000);
 });

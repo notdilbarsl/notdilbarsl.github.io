@@ -16,7 +16,7 @@ describe('Client to Server Integration', () => {
       expect(response.body[0]).toHaveProperty('playerName');
       expect(response.body[0]).toHaveProperty('tries');
     }
-  });
+  }, 100000);
 
   it('should submit user score with a POST request', async () => {
     const postData = {
@@ -32,5 +32,5 @@ describe('Client to Server Integration', () => {
 
     expect(response.statusCode).toBe(200);  // Check if submission was successful
     expect(response.body.message).toBe('Score submitted successfully!');
-  });
+  }, 100000);
 });
