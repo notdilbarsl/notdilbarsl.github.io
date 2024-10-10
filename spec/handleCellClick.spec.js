@@ -1,11 +1,11 @@
 /* global jest, describe, it, expect, beforeEach */
 
-import { handleCellClick } from '../handleCellClick.js';
-import { isGameOver, getPlayerPos } from '../gameState.js';
-import { movePlayer } from '../movePlayer.js';
+import { handleCellClick } from '../client/handleCellClick.js';
+import { isGameOver, getPlayerPos } from '../client/gameState.js';
+import { movePlayer } from '../client/movePlayer.js';
 
-jest.mock('../gameState.js');
-jest.mock('../movePlayer.js');
+jest.mock('../client/gameState.js');
+jest.mock('../client/movePlayer.js');
 
 describe('handleCellClick', () => {
   beforeEach(() => {

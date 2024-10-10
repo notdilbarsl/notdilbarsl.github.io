@@ -1,8 +1,8 @@
 /* global jest, describe, it, expect, beforeEach, afterEach */
 
-import { triggerWinningAnimation } from '../triggerWinningAnimation.js';
-import { postScore } from '../postScore.js';
-jest.mock('../postScore.js');
+import { triggerWinningAnimation } from '../client/triggerWinningAnimation.js';
+import { postScore } from '../client/postScore.js';
+jest.mock('../client/postScore.js');
 describe('triggerWinningAnimation function', () => {
 
   beforeEach(() => {

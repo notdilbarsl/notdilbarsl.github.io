@@ -1,6 +1,6 @@
 /* global describe, it, expect, beforeEach */
 
-import { chooseGridSize } from '../chooseGridSize.js';
+import { chooseGridSize } from '../client/chooseGridSize.js';
 
 describe('chooseGridSize', () => {
   beforeEach(() => {

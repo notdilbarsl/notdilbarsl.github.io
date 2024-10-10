@@ -1,14 +1,14 @@
 /* global jest, describe, it, expect, beforeEach */
 
-import { movePlayer } from '../movePlayer.js';
-import { getPlayerPos, setPlayerPos, getGrid, setGrid, isGameOver } from '../gameState.js';
-import { checkLoss } from '../checkLoss.js';
-import { checkWin } from '../checkWin.js';
+import { movePlayer } from '../client/movePlayer.js';
+import { getPlayerPos, setPlayerPos, getGrid, setGrid, isGameOver } from '../client/gameState.js';
+import { checkLoss } from '../client/checkLoss.js';
+import { checkWin } from '../client/checkWin.js';
 
-jest.mock('../gameState.js');
-jest.mock('../checkLoss.js');
-jest.mock('../checkWin.js');
-jest.mock('../showGrid.js');
+jest.mock('../client/gameState.js');
+jest.mock('../client/checkLoss.js');
+jest.mock('../client/checkWin.js');
+jest.mock('../client/showGrid.js');
 
 describe('movePlayer', () => {
   beforeEach(() => {

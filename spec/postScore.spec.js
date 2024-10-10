@@ -1,5 +1,5 @@
 /* global jest, describe, it, expect, beforeEach, afterEach */
-import { postScore } from '../postScore.js';
+import { postScore } from '../client/postScore.js';
 
 describe('postScore', () => {
   beforeEach(() => {

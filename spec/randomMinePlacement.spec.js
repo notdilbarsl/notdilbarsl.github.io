@@ -1,11 +1,11 @@
 /* global jest, describe, it, expect, beforeEach */
 
-import { placeMines } from '../randomMinePlacement.js';
-import { getGrid, setGrid } from '../gameState.js';
-import { generateRandomPath } from '../generateRandomPath.js';
+import { placeMines } from '../client/randomMinePlacement.js';
+import { getGrid, setGrid } from '../client/gameState.js';
+import { generateRandomPath } from '../client/generateRandomPath.js';
 
-jest.mock('../gameState.js');
-jest.mock('../generateRandomPath.js');
+jest.mock('../client/gameState.js');
+jest.mock('../client/generateRandomPath.js');
 
 describe('placeMines', () => {
   let grid, path;

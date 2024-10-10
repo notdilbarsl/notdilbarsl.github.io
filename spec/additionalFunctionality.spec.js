@@ -1,16 +1,16 @@
 /* global jest, describe, it, expect, beforeEach, afterEach */
 
-import { movePlayer } from '../movePlayer.js';
-import { generateGrid } from '../generateGrid.js';
-import { chooseGridSize } from '../chooseGridSize.js';
-import { chooseNumberOfMine } from '../chooseNumberOfMine.js';
-import { startGame } from '../startGame.js';
+import { movePlayer } from '../client/movePlayer.js';
+import { generateGrid } from '../client/generateGrid.js';
+import { chooseGridSize } from '../client/chooseGridSize.js';
+import { chooseNumberOfMine } from '../client/chooseNumberOfMine.js';
+import { startGame } from '../client/startGame.js';
 
-jest.mock('../movePlayer.js');
-jest.mock('../generateGrid.js');
-jest.mock('../chooseGridSize.js');
-jest.mock('../chooseNumberOfMine.js');
-jest.mock('../startGame.js');
+jest.mock('../client/movePlayer.js');
+jest.mock('../client/generateGrid.js');
+jest.mock('../client/chooseGridSize.js');
+jest.mock('../client/chooseNumberOfMine.js');
+jest.mock('../client/startGame.js');
 
 describe('additionalFunctionality', () => {
     beforeEach(async () => {
@@ -22,7 +22,7 @@ describe('additionalFunctionality', () => {
       <button id="start-game-btn">Start Game</button>
     `;
 
-    await import('../additionalFunctionality.js');
+    await import('../client/additionalFunctionality.js');
   });
 
   afterEach(() => {

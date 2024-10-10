@@ -1,11 +1,11 @@
 /* global jest, describe, it, expect, beforeEach */
 
-import { createGrid } from '../createGrid.js';
-import { setGrid, getPlayerPos } from '../gameState.js';
-import { handleCellClick } from '../handleCellClick.js';
+import { createGrid } from '../client/createGrid.js';
+import { setGrid, getPlayerPos } from '../client/gameState.js';
+import { handleCellClick } from '../client/handleCellClick.js';
 
-jest.mock('../gameState.js');
-jest.mock('../handleCellClick.js');
+jest.mock('../client/gameState.js');
+jest.mock('../client/handleCellClick.js');
 
 describe('createGrid', () => {
   beforeEach(() => {

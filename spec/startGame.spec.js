@@ -1,15 +1,15 @@
 /* global jest, describe, it, expect, beforeEach */
 
-import { startGame } from '../startGame.js';
-import { resetGameState } from '../gameState.js';
-import { createGrid } from '../createGrid.js';
-import { placeMines } from '../randomMinePlacement.js';
-import { updateLeaderboard } from '../updateLeaderboard.js';
+import { startGame } from '../client/startGame.js';
+import { resetGameState } from '../client/gameState.js';
+import { createGrid } from '../client/createGrid.js';
+import { placeMines } from '../client/randomMinePlacement.js';
+import { updateLeaderboard } from '../client/updateLeaderboard.js';
 
-jest.mock('../gameState.js');
-jest.mock('../createGrid.js');
-jest.mock('../randomMinePlacement.js');
-jest.mock('../updateLeaderboard.js');
+jest.mock('../client/gameState.js');
+jest.mock('../client/createGrid.js');
+jest.mock('../client/randomMinePlacement.js');
+jest.mock('../client/updateLeaderboard.js');
 
 global.fetch = jest.fn(() =>
   Promise.resolve({

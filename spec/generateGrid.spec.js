@@ -1,6 +1,6 @@
 /* global describe, it, expect, beforeEach */
 
-import { generateGrid } from '../generateGrid.js';
+import { generateGrid } from '../client/generateGrid.js';
 
 describe('generateGrid', () => {
   beforeEach(() => {

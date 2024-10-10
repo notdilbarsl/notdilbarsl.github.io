@@ -1,6 +1,6 @@
 /* global describe, it, expect, beforeEach */
 
-import { resetGameState, setPlayerPos, getPlayerPos, setGameOver, isGameOver, setGrid, getGrid } from '../gameState.js';
+import { resetGameState, setPlayerPos, getPlayerPos, setGameOver, isGameOver, setGrid, getGrid } from '../client/gameState.js';
 
 describe('gameState functions', () => {
   beforeEach(() => {

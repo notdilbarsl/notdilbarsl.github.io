@@ -1,6 +1,6 @@
 /* global describe, it, expect, beforeEach */
 
-import { chooseNumberOfMine } from '../chooseNumberOfMine.js';
+import { chooseNumberOfMine } from '../client/chooseNumberOfMine.js';
 
 describe('chooseNumberOfMine', () => {
   beforeEach(() => {

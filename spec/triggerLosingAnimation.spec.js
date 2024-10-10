@@ -1,6 +1,6 @@
 /* global jest, describe, it, expect, beforeEach, afterEach */
 
-import { triggerLosingAnimation } from '../triggerLosingAnimation.js';
+import { triggerLosingAnimation } from '../client/triggerLosingAnimation.js';
 
 describe('triggerLosingAnimation function', () => {
 

@@ -1,5 +1,5 @@
 /* global jest, describe, it, expect, beforeEach, afterEach */
-import { updateLeaderboard } from '../updateLeaderboard.js';
+import { updateLeaderboard } from '../client/updateLeaderboard.js';
 
 describe('updateLeaderboard', () => {
   beforeEach(() => {

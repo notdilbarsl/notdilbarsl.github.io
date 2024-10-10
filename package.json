@@ -25,7 +25,10 @@
     "jest-environment-jsdom": "^29.7.0",
     "jsdom": "^25.0.0",
     "jsdom-global": "^3.0.2",
-    "prettier": "^3.3.3"
+    "mongodb-memory-server": "^10.1.0",
+    "mongoose": "^8.7.1",
+    "prettier": "^3.3.3",
+    "supertest": "^7.0.0"
   },
   "dependencies": {
     "body-parser": "^1.20.3",
@@ -33,9 +36,9 @@
     "eslint-plugin-jest": "^28.8.3",
     "esm": "^3.2.25",
     "express": "^4.21.0",
-    "mongoose": "^8.7.0",
     "node-fetch": "^3.3.2",
-    "rewire": "^7.0.0"
+    "rewire": "^7.0.0",
+    "util": "^0.12.5"
   },
   "jest": {
     "testEnvironment": "jest-environment-jsdom",
@@ -47,14 +50,14 @@
     ],
     "coverageThreshold": {
       "global": {
-        "branches": 50,
-        "functions": 50,
-        "lines": 50,
-        "statements": 50
+        "branches": 75,
+        "functions": 75,
+        "lines": 75,
+        "statements": 75
       }
     },
     "collectCoverageFrom": [
-      "*.js",
+      "client/**/*.js",
       "!spec/**",
       "!**/node_modules/**",
       "!eslint.config.js"

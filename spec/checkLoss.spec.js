@@ -1,9 +1,9 @@
 /* global jest, describe, it, expect, beforeEach */
 
-import * as gameState from '../gameState.js';
-import * as showGridModule from '../showGrid.js';
-import * as triggerLosingAnimationModule from '../triggerLosingAnimation.js';
-import { checkLoss } from '../checkLoss.js';
+import * as gameState from '../client/gameState.js';
+import * as showGridModule from '../client/showGrid.js';
+import * as triggerLosingAnimationModule from '../client/triggerLosingAnimation.js';
+import { checkLoss } from '../client/checkLoss.js';
 
 jest.spyOn(gameState, 'setGameOver').mockImplementation(() => {});
 jest.spyOn(showGridModule, 'showGrid').mockImplementation(() => {});

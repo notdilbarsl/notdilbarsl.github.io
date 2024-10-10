@@ -1,9 +1,9 @@
 /* global jest, describe, it, expect, beforeEach */
 
-import { showGrid } from '../showGrid.js';
-import { getGrid, isGameOver } from '../gameState.js';
+import { showGrid } from '../client/showGrid.js';
+import { getGrid, isGameOver } from '../client/gameState.js';
 
-jest.mock('../gameState.js');
+jest.mock('../client/gameState.js');
 
 describe('showGrid', () => {
   beforeEach(() => {

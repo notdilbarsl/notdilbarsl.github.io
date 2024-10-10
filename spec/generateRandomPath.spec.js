@@ -1,6 +1,6 @@
 /* global describe, it, expect, beforeEach */
 
-import { generateRandomPath } from '../generateRandomPath.js';
+import { generateRandomPath } from '../client/generateRandomPath.js';
 
 describe('generateRandomPath', () => {
   let gridSize;
