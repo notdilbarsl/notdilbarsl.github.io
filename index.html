@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grid Runner</title>
+    <link rel="preload" as="image" href="option.webp" />
+    <link rel="preload" as="image" href="game.webp" />    
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -83,11 +85,11 @@
     </div>
 
     <!-- Move all scripts here -->
-    <script type="module" src="client/generateGrid.js"></script>
+    <script type="module" src="client/generateGrid.js" ></script>
     <script type="module" src="client/generateDirection.js"></script>
     <script type="module" src="client/gameState.js"></script>
-    <script type="module" src="client/triggerLosingAnimation.js"></script>
-    <script type="module" src="client/triggerWinningAnimation.js"></script>
+    <script type="module" src="client/triggerLosingAnimation.js" async></script>
+    <script type="module" src="client/triggerWinningAnimation.js" async></script>
     <script type="module" src="client/chooseGridSize.js"></script>
     <script type="module" src="client/chooseNumberOfMine.js"></script>
     <script type="module" src="client/handleCellClick.js"></script>
@@ -97,9 +99,10 @@
     <script type="module" src="client/randomMinePlacement.js"></script>
     <script type="module" src="client/generateRandomPath.js"></script>
     <script type="module" src="client/startGame.js"></script>
-    <script type="module" src="client/checkLoss.js"></script>
-    <script type="module" src="client/checkWin.js"></script>
+    <script type="module" src="client/checkLoss.js" async></script>
+    <script type="module" src="client/checkWin.js" async></script>
     <script type="module" src="client/additionalFunctionality.js"></script>
-    <script type="module" src="client/updateLeaderboard.js"></script>
+    <script type="module" src="client/updateLeaderboard.js" async></script>
+    <script type="module" src="client/postScore.js" async></script>
 </body>
 </html>
