@@ -40,11 +40,9 @@ app.get('/leaderboard', async (req, res) => {
         res.status(500).json({ message: 'Error fetching leaderboard', error });
     }
 });
-
 app.get('/', (req, res) => {
     res.status(200).send('Server is running');
 });
-
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, '0.0.0.0', () => {
     console.log(`Server running on port ${PORT}`);
