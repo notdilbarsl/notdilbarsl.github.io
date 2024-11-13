@@ -1,5 +1,5 @@
 const request = require('supertest');  // Supertest to simulate HTTP requests
-const renderUrl = 'https://notdilbarsl-github-io.onrender.com';  // Replace with your Render backend URL
+const renderUrl = 'https://notdilbarsl-github-io-2.onrender.com';  // Replace with your Render backend URL
 
 describe('Client to Server Integration', () => {
   it('should respond with leaderboard data when a GET request is made', async () => {
@@ -7,7 +7,8 @@ describe('Client to Server Integration', () => {
     const mineCount = 5;
 
     const response = await request(renderUrl)
-      .get(`/leaderboard?gridSize=${gridSize}&mineCount=${mineCount}`);
+      .get(`/leaderboard?gridSize=${gridSize}&mineCount=${mineCount}`)
+      .redirects(5);
     
     expect(response.statusCode).toBe(200); // Check if status code is OK
     expect(Array.isArray(response.body)).toBe(true); // Ensure it returns an array
@@ -28,7 +29,8 @@ describe('Client to Server Integration', () => {
 
     const response = await request(renderUrl)
       .post('/submit-score')
-      .send(postData);
+      .send(postData)
+      .redirects(5);
 
     expect(response.statusCode).toBe(200);  // Check if submission was successful
     expect(response.body.message).toBe('Score submitted successfully!');

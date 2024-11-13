@@ -5,7 +5,7 @@ export function postScore(){
   const userId = document.getElementById('userID').value;
   const roundNumber = document.getElementById('tries').textContent;
   const grid = `${gridSizeSelected}x${gridSizeSelected}`;
-  fetch('https://notdilbarsl-github-io.onrender.com/submit-score', {
+  fetch('https://notdilbarsl-github-io-2.onrender.com/submit-score', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

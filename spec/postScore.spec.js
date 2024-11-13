@@ -21,7 +21,7 @@ describe('postScore', () => {
 
   it('should send the correct POST request with the right data', async () => {
     await postScore();
-    expect(fetch).toHaveBeenCalledWith('https://notdilbarsl-github-io.onrender.com/submit-score', {
+    expect(fetch).toHaveBeenCalledWith('https://notdilbarsl-github-io-2.onrender.com/submit-score', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
