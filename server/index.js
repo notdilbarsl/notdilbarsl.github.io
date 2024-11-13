@@ -5,8 +5,8 @@ const app = express();
 const cors = require('cors');
 
 app.use(cors({
-    origin: 'https://notdilbarsl.github.io', 
-    methods: ['GET', 'POST'],
+    origin: 'https://notdilbarsl.github.io',
+    methods: ['GET', 'POST'], 
     allowedHeaders: ['Content-Type', 'Authorization'],
 }));
 
