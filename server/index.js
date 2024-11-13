@@ -4,7 +4,12 @@ const Leaderboard = require('./models/score');
 const app = express();
 const cors = require('cors');
 
-app.use(cors());
+app.use(cors({
+    origin: 'https://notdilbarsl.github.io', 
+    methods: ['GET', 'POST'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+}));
+
 app.use(express.json());
 
 mongoose.connect('mongodb+srv://notdilbarsl:Rise1.618@gridrunner.onl43.mongodb.net/?retryWrites=true&w=majority&appName=GridRunner', {

@@ -9,7 +9,7 @@ describe('Client to Server Integration', () => {
     const response = await request(renderUrl)
       .get(`/leaderboard?gridSize=${gridSize}&mineCount=${mineCount}`)
       .redirects(5);
-    
+
     expect(response.statusCode).toBe(200); // Check if status code is OK
     expect(Array.isArray(response.body)).toBe(true); // Ensure it returns an array
     // Optionally, check the content of the response
@@ -31,8 +31,8 @@ describe('Client to Server Integration', () => {
       .post('/submit-score')
       .send(postData)
       .redirects(5);
-
+      
     expect(response.statusCode).toBe(200);  // Check if submission was successful
     expect(response.body.message).toBe('Score submitted successfully!');
-  }, 100000);
+  }, 10000);
 });
