@@ -11,18 +11,41 @@ app.use(cors({
     allowedHeaders: ['Content-Type', 'Authorization'],
 }));
 
-// Parse SERVERS environment variable or use default values
-const servers = process.env.SERVERS ? process.env.SERVERS.split(',').map(s => s.trim()) : [
+// Application servers for load balancing
+const servers = [
     "https://notdilbarsl-github-io.onrender.com",
     "https://notdilbarsl-github-io-1.onrender.com"
 ];
 let currentServerIndex = 0;
 
-// Function to handle requests and forward them in a round-robin manner
+// Cooldown tracking for unavailable servers
+const cooldownMap = new Map();  // Stores {serverUrl: availableAtTimestamp}
+
+// Function to handle requests and forward them in a round-robin manner with cooldown
 const handler = async (req, res) => {
     const { method, url, headers, body } = req;
-    const server = servers[currentServerIndex];
-    
+
+    // Attempt to find an available server
+    let attempts = 0;
+    let server;
+    while (attempts < servers.length) {
+        const serverIndex = (currentServerIndex + attempts) % servers.length;
+        server = servers[serverIndex];
+        const cooldown = cooldownMap.get(server);
+
+        // Check if the server is under cooldown
+        if (!cooldown || cooldown < Date.now()) {
+            currentServerIndex = serverIndex;  // Set the next available server as current
+            break;
+        }
+
+        attempts++;
+    }
+
+    if (!server) {
+        return res.status(500).send("All servers are unavailable due to cooldown periods.");
+    }
+
     // Update to the next server for round-robin
     currentServerIndex = (currentServerIndex + 1) % servers.length;
 
@@ -38,7 +61,10 @@ const handler = async (req, res) => {
         console.log(`Forwarded request to: ${server}`);
     } catch (error) {
         console.error(`Error forwarding to ${server}: ${error.message}`);
-        
+
+        // If error, set server on cooldown for 10 seconds
+        cooldownMap.set(server, Date.now() + 10000);
+
         // Attempt a fallback to the next server in case of an error
         const fallbackServer = servers[(currentServerIndex + 1) % servers.length];
         try {
