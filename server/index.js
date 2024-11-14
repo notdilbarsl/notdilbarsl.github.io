@@ -48,7 +48,13 @@ app.get('/leaderboard', async (req, res) => {
 app.get('/', (req, res) => {
     res.status(200).send('Server is running');
 });
-const PORT = process.env.PORT || 3001;
-app.listen(PORT, '0.0.0.0', () => {
+
+const handler = num => (req, res) => {
+    res.send('Response from server ' + num);
+};
+const PORT = process.env.PORT;
+const serverNum = PORT - 2999;
+app.get('*', handler(serverNum)); 
+app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
