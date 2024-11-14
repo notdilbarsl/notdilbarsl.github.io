@@ -37,7 +37,8 @@ const handler = async (req, res) => {
                 ...req.headers,
                 Host: server.host // Set the Host header explicitly
             },
-            data: body
+            data: body,
+            timeout: 5000
         });
 
         res.status(response.status).send(response.data);
