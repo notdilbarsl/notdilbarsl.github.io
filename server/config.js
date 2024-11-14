@@ -29,21 +29,20 @@ function getNextServer() {
 const handler = async (req, res) => {
     const { method, url, headers, body } = req;
     const server = getNextServer();
-    const requestUrl = `${server.url}${url}`;
-
-    console.log(`Forwarding request to: ${requestUrl}`);
-
+    console.log(`Forwarding request to: ${server.url}${url} with method ${method}`);
     try {
         const response = await axios({
-            url: requestUrl,
+            url: `${server.url}${url}`,
             method: method,
             headers: {
-                ...headers,
-                Host: server.host // Set the Host header explicitly
+                ...req.headers,
+                Host: server.host // Ensures that the correct Host header is forwarded
             },
             data: body,
-            timeout: 10000
-        });
+            timeout: 15000,  // Increase timeout to handle longer responses
+            httpAgent: new http.Agent({ keepAlive: true }),  // Keep connections open
+            httpsAgent: new https.Agent({ keepAlive: true })
+        });        
         res.status(response.status).send(response.data);
     } catch (error) {
         console.error(`Error forwarding to ${requestUrl}: ${error.message}`);
