@@ -1,5 +1,5 @@
 const request = require('supertest');  // Supertest to simulate HTTP requests
-const renderUrl = 'https://notdilbarsl-github-io-2.onrender.com';  // Replace with your Render backend URL
+const renderUrl = 'https://notdilbarsl-github-io-3.onrender.com';  // Replace with your Render backend URL
 
 describe('Client to Server Integration', () => {
   it('should respond with leaderboard data when a GET request is made', async () => {
