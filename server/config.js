@@ -13,9 +13,10 @@ app.use(cors({
 
 // Application servers for load balancing
 const servers = [
-    "https://notdilbarsl-github-io.onrender.com",
-    "https://notdilbarsl-github-io-1.onrender.com"
+    "https://jsonplaceholder.typicode.com/posts",
+    "https://jsonplaceholder.typicode.com/comments"
 ];
+
 let currentServerIndex = 0;
 
 // Cooldown tracking for unavailable servers
