@@ -4,7 +4,7 @@ const cors = require('cors');
 
 const app = express();
 
-// CORS configuration
+// Enable CORS for specific origin
 app.use(cors({
     origin: 'https://notdilbarsl.github.io',
     methods: ['GET', 'POST'],
@@ -18,15 +18,19 @@ const servers = [
 ];
 let currentServerIndex = 0;
 
-// Function to handle requests and forward them with the correct host header
-const handler = async (req, res) => {
-    const { method, url, body } = req;
+// Helper to get the current server and increment for round-robin
+function getNextServer() {
     const server = servers[currentServerIndex];
-
-    // Update to the next server for round-robin
     currentServerIndex = (currentServerIndex + 1) % servers.length;
+    return server;
+}
 
+// Handler to forward requests
+const handler = async (req, res) => {
+    const { method, url, headers, body } = req;
+    const server = getNextServer();
     const requestUrl = `${server.url}${url}`;
+
     console.log(`Forwarding request to: ${requestUrl}`);
 
     try {
@@ -34,25 +38,24 @@ const handler = async (req, res) => {
             url: requestUrl,
             method: method,
             headers: {
-                ...req.headers,
+                ...headers,
                 Host: server.host // Set the Host header explicitly
             },
             data: body,
             timeout: 10000
         });
-        console.log(response);
         res.status(response.status).send(response.data);
-        console.log(`Forwarded request to: ${server.url}`);
     } catch (error) {
-        console.error(`Error forwarding to ${server.url}: ${error.message}`);
-        res.status(500).send("Server error");
+        console.error(`Error forwarding to ${requestUrl}: ${error.message}`);
+        res.status(500).send("Server error!");
     }
 };
 
-app.get('/favicon.ico', (req, res) => res.status(204).send());
-app.use(handler);
+// Define routes for GET and POST handling
+app.get('*', handler);
+app.post('*', handler);
 
-// Start the load balancer on port 8080
+// Start the load balancer
 app.listen(8080, err => {
     if (err) {
         console.error("Failed to start load balancer on PORT 8080");
