@@ -28,26 +28,31 @@ function getNextServer() {
 // Handler to forward requests
 const handler = async (req, res) => {
     const { method, url, headers, body } = req;
-    const server = getNextServer();
-    console.log(`Forwarding request body: ${JSON.stringify(body)}`);
-    const requestUrl = `${server.url}${url}`;
-    console.log(`Forwarding request to: ${server.url}${url} with method ${method}`);
+    const server = servers[currentServerIndex];
+
+    // Round-robin update
+    currentServerIndex = (currentServerIndex + 1) % servers.length;
+
     try {
+        const serverUrl = new URL(`${server}${url}`);
         const response = await axios({
-            url: `${server.url}${url}`,
+            url: serverUrl.toString(),
             method: method,
             headers: {
-                ...req.headers,
-                Host: new URL(server).host,
+                ...headers,
+                Host: serverUrl.host // Set the Host header using URL object
             },
-            data: body,
-        });        
+            data: body
+        });
+
         res.status(response.status).send(response.data);
+        console.log(`Forwarded request to: ${serverUrl}`);
     } catch (error) {
-        console.error(`Error forwarding to ${requestUrl}: ${error.message}`);
-        res.status(500).send("Server error!");
+        console.error(`Error forwarding to ${server}: ${error.message}`);
+        res.status(500).send("Server error during forwarding");
     }
 };
+
 
 // Define routes for GET and POST handling
 app.get('*', handler);
