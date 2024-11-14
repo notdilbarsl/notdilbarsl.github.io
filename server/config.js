@@ -1,8 +1,6 @@
 const express = require('express');
 const axios = require('axios');
 const cors = require('cors');
-const http = require('http');
-const https = require('https');
 
 const app = express();
 
@@ -40,12 +38,9 @@ const handler = async (req, res) => {
             method: method,
             headers: {
                 ...req.headers,
-                Host: server.host // Ensures that the correct Host header is forwarded
+                Host: new URL(server).host,
             },
             data: body,
-            timeout: 15000,  // Increase timeout to handle longer responses
-            httpAgent: new http.Agent({ keepAlive: true }),  // Keep connections open
-            httpsAgent: new https.Agent({ keepAlive: true })
         });        
         res.status(response.status).send(response.data);
     } catch (error) {
