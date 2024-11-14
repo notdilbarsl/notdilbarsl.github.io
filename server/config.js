@@ -4,54 +4,50 @@ const cors = require('cors');
 
 const app = express();
 
+// Enable CORS for specific origin
 app.use(cors({
     origin: 'https://notdilbarsl.github.io',
     methods: ['GET', 'POST'],
     allowedHeaders: ['Content-Type', 'Authorization'],
 }));
 
+// Application servers for load balancing
 const servers = [
     { url: "https://notdilbarsl-github-io.onrender.com", host: "notdilbarsl-github-io.onrender.com" },
     { url: "https://notdilbarsl-github-io-1.onrender.com", host: "notdilbarsl-github-io-1.onrender.com" }
 ];
 let currentServerIndex = 0;
 
+// Helper to get the current server and increment for round-robin
+function getNextServer() {
+    const server = servers[currentServerIndex];
+    currentServerIndex = (currentServerIndex + 1) % servers.length;
+    return server;
+}
+
+// Handler to forward requests
 const handler = async (req, res) => {
     const { method, url, headers, body } = req;
-
-    // Select the server based on currentServerIndex for round-robin
-    const server = servers[currentServerIndex];
-    currentServerIndex = (currentServerIndex + 1) % servers.length; // Update for round-robin
-
-    // Set Host header conditionally based on current server
-    const hostHeader =
-        currentServerIndex === 0
-            ? 'notdilbarsl-github-io.onrender.com'
-            : 'notdilbarsl-github-io-1.onrender.com';
-
+    const server = getNextServer();
+    console.log(`Forwarding request body: ${JSON.stringify(body)}`);
+    const requestUrl = `${server.url}${url}`;
+    console.log(`Forwarding request to: ${server.url}${url} with method ${method}`);
     try {
-        // Construct the full request URL
-        const requestUrl = `${server}${url}`;
-
         const response = await axios({
-            url: requestUrl,
+            url: `${server.url}${url}`,
             method: method,
             headers: {
-                ...headers,
-                Host: hostHeader,
+                ...req.headers,
+                Host: server.host
             },
             data: body,
-        });
-
+        });        
         res.status(response.status).send(response.data);
-        console.log(`Forwarded request to: ${requestUrl}`);
     } catch (error) {
-        console.error(`Error forwarding to ${server}: ${error.message}`);
-        res.status(500).send("Server error during forwarding");
+        console.error(`Error forwarding to ${requestUrl}: ${error.message}`);
+        res.status(500).send("Server error!");
     }
 };
-
-
 
 // Define routes for GET and POST handling
 app.get('*', handler);
