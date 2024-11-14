@@ -13,57 +13,35 @@ app.use(cors({
 
 // Application servers for load balancing
 const servers = [
-    "https://jsonplaceholder.typicode.com/posts",
-    "https://jsonplaceholder.typicode.com/comments"
+    { url: "https://notdilbarsl-github-io.onrender.com", host: "notdilbarsl-github-io.onrender.com" },
+    { url: "https://notdilbarsl-github-io-1.onrender.com", host: "notdilbarsl-github-io-1.onrender.com" }
 ];
-
 let currentServerIndex = 0;
 
-// Cooldown tracking for unavailable servers
-const cooldownMap = new Map();  // Stores {serverUrl: availableAtTimestamp}
-
-// Function to handle requests and forward them in a round-robin manner with cooldown
+// Function to handle requests and forward them with the correct host header
 const handler = async (req, res) => {
-    const { method, url, headers, body } = req;
+    const { method, url, body } = req;
+    const server = servers[currentServerIndex];
 
-    // Loop through servers until finding an available one
-    let attempts = 0;
-    let server;
-    while (attempts < servers.length) {
-        const serverIndex = (currentServerIndex + attempts) % servers.length;
-        server = servers[serverIndex];
-        const cooldown = cooldownMap.get(server);
-
-        // Check if the server is under cooldown
-        if (!cooldown || cooldown < Date.now()) {
-            currentServerIndex = (serverIndex + 1) % servers.length;  // Set the next server for round-robin
-            break;
-        }
-
-        attempts++;
-    }
-
-    // If all servers are unavailable, send an error response
-    if (attempts === servers.length) {
-        return res.status(500).send("All servers are currently under cooldown. Please try again later.");
-    }
+    // Update to the next server for round-robin
+    currentServerIndex = (currentServerIndex + 1) % servers.length;
 
     try {
         const response = await axios({
-            url: `${server}${url}`,
+            url: `${server.url}${url}`,
             method: method,
-            headers: headers,
+            headers: {
+                ...req.headers,
+                Host: server.host // Set the Host header explicitly
+            },
             data: body
         });
-        
+
         res.status(response.status).send(response.data);
-        console.log(`Request successfully forwarded to: ${server}`);
+        console.log(`Forwarded request to: ${server.url}`);
     } catch (error) {
-        console.error(`Error forwarding to ${server}: ${error.message}`);
-        
-        // Set server on cooldown for 10 seconds
-        cooldownMap.set(server, Date.now() + 10000);
-        res.status(500).send("Server error: Unable to process your request.");
+        console.error(`Error forwarding to ${server.url}: ${error.message}`);
+        res.status(500).send("Server error");
     }
 };
 
