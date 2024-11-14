@@ -26,9 +26,12 @@ const handler = async (req, res) => {
     // Update to the next server for round-robin
     currentServerIndex = (currentServerIndex + 1) % servers.length;
 
+    const requestUrl = `${server.url}${url}`;
+    console.log(`Forwarding request to: ${requestUrl}`);
+
     try {
         const response = await axios({
-            url: `${server.url}${url}`,
+            url: requestUrl,
             method: method,
             headers: {
                 ...req.headers,
