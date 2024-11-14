@@ -11,8 +11,8 @@ app.use(cors({
     allowedHeaders: ['Content-Type', 'Authorization'],
 }));
 
-// Application servers for load balancing
-const servers = [
+// Parse SERVERS environment variable or use default values
+const servers = process.env.SERVERS ? process.env.SERVERS.split(',').map(s => s.trim()) : [
     "https://notdilbarsl-github-io.onrender.com",
     "https://notdilbarsl-github-io-1.onrender.com"
 ];

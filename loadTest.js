@@ -6,8 +6,8 @@ let responseTimeTrend = new Trend('response_time');
 
 export let options = {
   stages: [
-    { duration: '30s', target: 300 },
-    { duration: '1m', target: 3000 },
+    { duration: '30s', target: 1000 },
+    { duration: '1m', target: 10000 },
     { duration: '30s', target: 0 },
   ],
 };
