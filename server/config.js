@@ -38,9 +38,9 @@ const handler = async (req, res) => {
                 Host: server.host // Set the Host header explicitly
             },
             data: body,
-            timeout: 5000
+            timeout: 10000
         });
-
+        console.log(response);
         res.status(response.status).send(response.data);
         console.log(`Forwarded request to: ${server.url}`);
     } catch (error) {
