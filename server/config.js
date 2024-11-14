@@ -53,6 +53,8 @@ const handler = async (req, res) => {
 app.get('*', handler);
 app.post('*', handler);
 
+
+
 // Start the load balancer
 app.listen(8080, err => {
     if (err) {
