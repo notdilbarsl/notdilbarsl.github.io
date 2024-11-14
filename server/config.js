@@ -29,6 +29,7 @@ function getNextServer() {
 const handler = async (req, res) => {
     const { method, url, headers, body } = req;
     const server = getNextServer();
+    const requestUrl = `${server.url}${url}`;
     console.log(`Forwarding request to: ${server.url}${url} with method ${method}`);
     try {
         const response = await axios({
