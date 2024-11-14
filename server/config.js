@@ -25,7 +25,7 @@ const cooldownMap = new Map();  // Stores {serverUrl: availableAtTimestamp}
 const handler = async (req, res) => {
     const { method, url, headers, body } = req;
 
-    // Attempt to find an available server
+    // Loop through servers until finding an available one
     let attempts = 0;
     let server;
     while (attempts < servers.length) {
@@ -35,19 +35,17 @@ const handler = async (req, res) => {
 
         // Check if the server is under cooldown
         if (!cooldown || cooldown < Date.now()) {
-            currentServerIndex = serverIndex;  // Set the next available server as current
+            currentServerIndex = (serverIndex + 1) % servers.length;  // Set the next server for round-robin
             break;
         }
 
         attempts++;
     }
 
-    if (!server) {
-        return res.status(500).send("All servers are unavailable due to cooldown periods.");
+    // If all servers are unavailable, send an error response
+    if (attempts === servers.length) {
+        return res.status(500).send("All servers are currently under cooldown. Please try again later.");
     }
-
-    // Update to the next server for round-robin
-    currentServerIndex = (currentServerIndex + 1) % servers.length;
 
     try {
         const response = await axios({
@@ -58,29 +56,13 @@ const handler = async (req, res) => {
         });
         
         res.status(response.status).send(response.data);
-        console.log(`Forwarded request to: ${server}`);
+        console.log(`Request successfully forwarded to: ${server}`);
     } catch (error) {
         console.error(`Error forwarding to ${server}: ${error.message}`);
-
-        // If error, set server on cooldown for 10 seconds
+        
+        // Set server on cooldown for 10 seconds
         cooldownMap.set(server, Date.now() + 10000);
-
-        // Attempt a fallback to the next server in case of an error
-        const fallbackServer = servers[(currentServerIndex + 1) % servers.length];
-        try {
-            const fallbackResponse = await axios({
-                url: `${fallbackServer}${url}`,
-                method: method,
-                headers: headers,
-                data: body
-            });
-            
-            res.status(fallbackResponse.status).send(fallbackResponse.data);
-            console.log(`Fallback to: ${fallbackServer}`);
-        } catch (fallbackError) {
-            console.error(`Fallback error to ${fallbackServer}: ${fallbackError.message}`);
-            res.status(500).send("All servers are unavailable");
-        }
+        res.status(500).send("Server error: Unable to process your request.");
     }
 };
 
