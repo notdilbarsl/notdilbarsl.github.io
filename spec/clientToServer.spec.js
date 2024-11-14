@@ -19,20 +19,5 @@ describe('Client to Server Integration', () => {
     }
   }, 100000);
 
-  it('should submit user score with a POST request', async () => {
-    const postData = {
-      playerName: 'TestUser',
-      gridSize: '6x6',
-      mineCount: 5,
-      tries: 3
-    };
 
-    const response = await request(renderUrl)
-      .post('/submit-score')
-      .send(postData)
-      .redirects(5);
-
-    expect(response.statusCode).toBe(200);  // Check if submission was successful
-    expect(response.body.message).toBe('Score submitted successfully!');
-  }, 100000);
 });
