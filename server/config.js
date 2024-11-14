@@ -31,6 +31,7 @@ function getNextServer() {
 const handler = async (req, res) => {
     const { method, url, headers, body } = req;
     const server = getNextServer();
+    console.log(`Forwarding request body: ${JSON.stringify(body)}`);
     const requestUrl = `${server.url}${url}`;
     console.log(`Forwarding request to: ${server.url}${url} with method ${method}`);
     try {
