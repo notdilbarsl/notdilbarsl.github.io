@@ -31,7 +31,6 @@ describe('Client to Server Integration', () => {
       .post('/submit-score')
       .send(postData)
       .redirects(5);
-
     expect(response.statusCode).toBe(200);  // Check if submission was successful
     expect(response.body.message).toBe('Score submitted successfully!');
   }, 100000);
