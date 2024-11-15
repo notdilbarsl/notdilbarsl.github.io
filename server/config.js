@@ -15,7 +15,6 @@ let servers = [
     { url: "https://notdilbarsl-github-io-1.onrender.com", host: "notdilbarsl-github-io-1.onrender.com", healthy: true }
 ];
 let currentServerIndex = 0;
-
 function getNextServer() {
     const healthyServers = servers.filter(server => server.healthy);
     if (healthyServers.length === 0) {
