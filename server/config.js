@@ -4,21 +4,18 @@ const cors = require('cors');
 
 const app = express();
 
-// Enable CORS for specific origin
 app.use(cors({
     origin: 'https://notdilbarsl.github.io',
     methods: ['GET', 'POST'],
     allowedHeaders: ['Content-Type', 'Authorization'],
 }));
 
-// Application servers with health status
 let servers = [
     { url: "https://notdilbarsl-github-io.onrender.com", host: "notdilbarsl-github-io.onrender.com", healthy: true },
     { url: "https://notdilbarsl-github-io-1.onrender.com", host: "notdilbarsl-github-io-1.onrender.com", healthy: true }
 ];
 let currentServerIndex = 0;
 
-// Helper to get the next healthy server
 function getNextServer() {
     const healthyServers = servers.filter(server => server.healthy);
     if (healthyServers.length === 0) {
@@ -29,7 +26,6 @@ function getNextServer() {
     return server;
 }
 
-// Health-checking function
 async function checkServerHealth() {
     for (const server of servers) {
         try {
@@ -43,10 +39,8 @@ async function checkServerHealth() {
     }
 }
 
-// Periodically check health every 10 seconds
 setInterval(checkServerHealth, 10000);
 
-// Handler to forward requests
 const handler = async (req, res) => {
     const { method, url, headers, body } = req;
     try {
@@ -69,11 +63,9 @@ const handler = async (req, res) => {
     }
 };
 
-// Define routes for GET and POST handling
 app.get('*', handler);
 app.post('*', handler);
 
-// Start the load balancer
 app.listen(8080, err => {
     if (err) {
         console.error("Failed to start load balancer on PORT 8080");
@@ -82,5 +74,4 @@ app.listen(8080, err => {
     }
 });
 
-// Initial health check
 checkServerHealth();
